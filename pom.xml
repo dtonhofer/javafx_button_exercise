@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>javafx_button_exercise</artifactId>
+    <version>0.9</version>
+
+    <!-- RUNNING VIA MAVEN + JAVAFX PLUGIN IN IDE: -->
+    <!--   'Main Menu' > 'Run' > 'Run Maven Goal' > 'Plugins' > 'JavaFx Maven Plugin' > 'javafx:run' -->
+    <!--   This will invoke the goal "javafx:run" of the "javafx-maven-plugin". -->
+    <!--   With the 'Run New Maven Goal' menu entry, you can define that goal, and it will appear in the -->
+    <!--   context menu as 'right-mouse-button menu' > 'run maven' > 'javafx:run' -->
+
+    <!-- RUNNING VIA MAVEN IN COMMAND LINE w/o leaving the IDE (no need for OpenJDX SDK): -->
+    <!-- Right-click on the project window and select "Open Terminal at the current Maven module path". -->
+    <!-- Enter the command "mvn javafx:run" or for debugging output "mvn -X javafx:run". -->
+    <!-- This will invoke the goal "javafx:run" of the "javafx-maven-plugin". -->
+
+    <properties>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- This is the latest OpenJavaFX version on 2024-09-26 (version of 2024-09-16) -->
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+
+        <javafx.version>23</javafx.version>
+
+        <javafx.plugin.version>0.0.8</javafx.plugin.version>
+        <compiler.plugin.version>3.13.0</compiler.plugin.version>
+        <exec.plugin.version>3.4.1</exec.plugin.version>
+        <dependency.plugin.version>3.8.0</dependency.plugin.version>
+        <main.class>com.example.javafx_button_exercise.Main</main.class>
+
+        <java.compiler.source.version>21</java.compiler.source.version>
+        <java.compiler.target.version>21</java.compiler.target.version>
+
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Standard Java Compiler Plugin -->
+            <!-- https://maven.apache.org/plugins/maven-compiler-plugin/ -->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.compiler.source.version}</source>
+                    <target>${java.compiler.target.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Special Plugin to run JavaFX programs -->
+            <!-- https://github.com/openjfx/javafx-maven-plugin -->
+            <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-maven-plugin -->
+            <!-- If you run the plugin's goal on the command line with the '-X' option like so: -->
+            <!-- mvn -X javafx:run -->
+            <!-- you will see the command line the plugin builds, which looks as follows, with ++ replaced by double dash -->
+
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>${javafx.plugin.version}</version>
+                <configuration>
+                    <mainClass>${main.class}</mainClass>
+                    <options>
+                        <option>-ea</option>
+                    </options>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
