@@ -31,7 +31,7 @@ class PaneBuilder {
 
     private static Button buildButton() {
         final var button = new Button("Click Me!");
-        button.setMinWidth(120); // I think these are "120pt", why is there no "unit"?
+        button.setMinWidth(120); // I think these are "120px", why is there no "unit"?
         final var desc = "Button";
         button.addEventHandler(ActionEvent.ACTION, event -> {
             handleActionEvent(desc, event);
@@ -69,7 +69,7 @@ class PaneBuilder {
         final var stackPane = new StackPane();
         stackPane.setAlignment(Pos.CENTER);
         final var hbox = buildHBoxAroundVBoxAroundButton(button);
-        final var insets = new Insets(20, 20, 20, 20); // I guess those are "20points"
+        final var insets = new Insets(20, 20, 20, 20); // I think these are "20px" throughout
         StackPane.setMargin(hbox, insets);
         stackPane.getChildren().add(hbox);
         return stackPane;
